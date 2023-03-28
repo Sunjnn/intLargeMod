@@ -58,23 +58,11 @@ intLargeMod operator+(int left, intLargeMod &right) {
 }
 
 intLargeMod &intLargeMod::operator*=(intLargeMod &right) {
-    int div = _MOD / _val;
-    if (right._val <= div) {
-        _val *= right._val;
-        return *this;
-    }
-
-    ++div;
-    int div1 = right._val / div;
-    int rem = right._val % div;
-    rem *= _val;
-    _val *= div;
-    _val %= _MOD;
-
-    intLargeMod newRight(div1);
-    *this *= newRight;
-    *this += rem;
-
+    long leftL = _val;
+    long rightL = right._val;
+    leftL *= rightL;
+    leftL %= _MOD;
+    _val = leftL;
     return *this;
 }
 
